@@ -143,7 +143,7 @@ int remove_especifico(int x, Lista * l1){
                     return 1;
                 }else
                 {
-                    anterior = aux->proximo_elemento;
+                    anterior->proximo_elemento = aux->proximo_elemento;
                     free(aux);
                     return 1;
                 }
