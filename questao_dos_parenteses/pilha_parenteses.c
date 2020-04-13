@@ -83,43 +83,28 @@ char pop(Lista * l){
     }
 }
 void verificaCondicao(Lista * l1){
-    char *caracteres;
-    caracteres = (char * )malloc(sizeof(char) * 50);
-    int i, j=0, x, naoCondiz, condiz;
+    char *parenteses;
+    parenteses = (char * )malloc(sizeof(char) * 50);
+    int i, j=0, x, fechado = 0;
 
-    printf("quais caracteres deseja comparar?\n");
-    scanf("%s", caracteres);
+    printf("Qual expressão quer verificar?\n");
+    scanf("%s", parenteses);
 
-    for (i = 0; i < strlen(caracteres); i++){
-        if (caracteres[i] == 'C'){
-            j = 1;
-        }
-        if(caracteres[i] == 'D'){
-            j=0;
-        }
-        else{
-            if (j == 0){
-                push(l1, caracteres[i]);
-            }
-            else{
-                //auxiliar = pop(l1);
-                //x = strcmp(caracteres[i], auxiliar[i]);
-                // if (x != 0){
-                if(pop(l1) != caracteres[i]){
-                    naoCondiz++;
-                    condiz=0;
-                    break;
-                }else{
-                    condiz++;
-                    naoCondiz = 0;
-                }
+    for(i=0; i<strlen(parenteses); i++){
+        if (parenteses[i] == '('){
+            push(l1, parenteses[i]);
+        }else{
+            if(parenteses[i] == ')' && pop(l1) != '(' && l1->primeiro_elemento ==NULL){
+                printf("manito como q tu começa abrindo um parenteses assim?\n");
+                fechado = 1;
+                break;
             }
         }
     }
-    if(naoCondiz != 0){
-        printf("Nao condiz com xCy!\n");
-    }if(condiz != 0){
-        printf("condiz com xCy\n");
+    if(l1->primeiro_elemento == NULL && fechado == 0){
+        printf("sua expressao esta corretissima man, tds os parenteses fecham\n");
+    }else{
+        printf("ta faltando parenteses ai campeão\n");
     }
 }
 // isso foi oq eu consegui fazer
