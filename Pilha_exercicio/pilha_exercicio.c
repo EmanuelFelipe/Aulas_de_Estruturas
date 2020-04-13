@@ -18,7 +18,6 @@ typedef struct Registro{
     void push(Lista * l, char x);
     char pop(Lista * l);
     int empty(Lista * l);
-    void mostrar(Lista * l1);
     void verificaCondicao(Lista * l1);
 
 int main(){
@@ -83,26 +82,10 @@ char pop(Lista * l){
         return retorna_ultimo;
     }
 }
-void mostrar(Lista * l1){
-    int x;
-    char y;
-    if(l1->primeiro_elemento == NULL){
-        printf("\n Pilha vazia");
-    }else{
-        Registro * elemento_a_mostrar = l1->primeiro_elemento;
-        while (elemento_a_mostrar!= NULL){   
-            x++;
-            y = elemento_a_mostrar->valor;
-            printf("%s ", y);
-            elemento_a_mostrar = elemento_a_mostrar->proximo_elemento;
-        }
-    }
-}
-
 void verificaCondicao(Lista * l1){
     char *caracteres;
     caracteres = (char * )malloc(sizeof(char) * 50);
-    int i, j, x;
+    int i, j=0, x, naoCondiz, condiz;
 
     printf("quais caracteres deseja comparar?\n");
     scanf("%s", caracteres);
@@ -120,13 +103,20 @@ void verificaCondicao(Lista * l1){
                 //x = strcmp(caracteres[i], auxiliar[i]);
                 // if (x != 0){
                 if(pop(l1) != caracteres[i]){
-                    printf("Nao condiz com xCy!\n");
+                    naoCondiz++;
+                    condiz=0;
                     break;
                 }else{
-                    printf("condiz com xCy\n");
+                    condiz++;
+                    naoCondiz = 0;
                 }
             }
         }
+    }
+    if(naoCondiz != 0){
+        printf("Nao condiz com xCy!\n");
+    }if(condiz != 0){
+        printf("condiz com xCy\n");
     }
 }
 // isso foi oq eu consegui fazer
