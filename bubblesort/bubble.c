@@ -3,10 +3,6 @@
 #include <time.h>
 #include "omp.h"
 
-
-
-
-
 void mostrar_vetor(long int * vet , long int qtd);
 void bubblesort(long int * vet, long int qtd);
 long int * aloca_vetor_randomico(long int qtd);
